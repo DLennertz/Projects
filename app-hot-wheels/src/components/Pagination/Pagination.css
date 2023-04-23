@@ -1,0 +1,33 @@
+.pagination {
+  list-style: none;
+  display: flex;
+}
+
+.pagination li {
+  padding: 10px;
+  border: 1px solid #0099ff;
+  cursor: pointer;
+}
+.pagination li:hover{
+    background-color: #0099ff;
+    color: white;
+}
+.pagination li:hover button{
+    color: white;
+}
+.pagination li.active {
+  background-color: #0099ff;
+  color: white;
+}
+
+.pagination li button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pagination li button:focus {
+  outline: none;
+}

@@ -1,0 +1,20 @@
+.list {
+  background-color: aliceblue;
+  width: max-content;
+  display: flex;
+}
+.fields {
+  background-color: aliceblue;
+  width: 100%;
+  display: block;
+}
+.field-div {
+  margin: 4px;
+}
+.content-div {
+  margin: 4px;
+}
+
+li {
+  list-style-type: none;
+}

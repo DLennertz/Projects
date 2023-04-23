@@ -1,0 +1,118 @@
+import { useState } from "react";
+import { useFormik } from "formik";
+import ItemService from "../../../services/ItemService";
+import Swal from "sweetalert2";
+
+const ItemUpdateForm = () => {
+  var formData = new FormData();
+  const itemService = new ItemService();
+
+  const [listPower, setListPower] = useState([]);
+  const [name, setName] = useState("");
+
+  function handleChangeName(event) {
+    setName(event.target.value);
+  }
+
+  function handleAddPower() {
+    const newList = listPower.concat({ name });
+    setListPower(newList);
+  }
+
+  function handleRemovePower(name) {
+    const newList = listPower.filter(function (power) {
+      return power.name !== name;
+    });
+    setListPower(newList);
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      id: "",
+      name: "",
+      power: []
+    },
+
+    onSubmit: (values) => {
+      const item = {
+        id: values.id,
+        name: values.name,
+        power: listPower
+      };
+
+      const jsonData = JSON.stringify(item);
+      const newItem = new Blob([jsonData], {
+        type: "application/json"
+      });
+
+      formData.append("item", newItem);
+
+      itemService
+        .updateItem(formData)
+        .then(() => {
+          new Swal("", "Update feito com sucesso", "success");
+        })
+        .catch((error) => new Swal("", error, "error"));
+    }
+  });
+
+  return (
+    <form className="personagem-form" onSubmit={formik.handleSubmit}>
+      <div className="title">
+        <h2>Item Update</h2>
+      </div>
+
+      <div className="fields">
+        <div className="field-div">
+          <label>Name: </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
+          <label>ID: </label>
+          <input
+            id="id"
+            name="id"
+            type="number"
+            onChange={formik.handleChange}
+            value={formik.values.id}
+            placeholder="ID"
+          />
+        </div>
+      </div>
+
+      <div className="list">
+        <div className="content-div">
+          <div>
+            <label>Power: </label>
+            <input type="text" onChange={handleChangeName} />
+            <button type="button" onClick={handleAddPower}>
+              ADD
+            </button>
+          </div>
+          <ul>
+            {listPower.map((item) => {
+              return (
+                <li key={item.id}>
+                  {item.name}{" "}
+                  <button
+                    type="button"
+                    onClick={() => handleRemovePower(item.name)}
+                  >
+                    REMOVE
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default ItemUpdateForm;
