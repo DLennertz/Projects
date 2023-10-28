@@ -33,12 +33,15 @@ public class ItemService {
 		
 		List<Power> powerList = new ArrayList<>();
 		
-		for(Power power: item.getPower()) {
-			if(!powerController.exists(power.getName()))
-				powerList.add(powerController.findById(powerController.createPower(power).getBody().getId()).getBody());
-			else
-				powerList.add(powerController.findByName(power.getName()));
+		if(item.getPower()!= null) {
+			for(Power power: item.getPower()) {
+				if(!powerController.exists(power.getName()))
+					powerList.add(powerController.findById(powerController.createPower(power).getBody().getId()).getBody());
+				else
+					powerList.add(powerController.findByName(power.getName()));
+			}
 		}
+		
 		
 		item.setPower(powerList);
 		

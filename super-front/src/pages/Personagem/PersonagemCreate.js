@@ -1,6 +1,6 @@
 import SubMenuPersonagem from "../../components/Menu/SubMenu/SubMenuPersonagem/SubMenuPersonagem";
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
-import CreatePersonagemForm from "../../components/Form/personagem/CreatePersonagemForm";
+import CreatePersonagemForm from "../../components/Form/Personagem/CreatePersonagemForm";
 
 function PersonagemCreate() {
   return (

@@ -1,16 +1,16 @@
 import { Formik, Form, Field } from "formik";
-import PowerService from "../../../services/PowerService";
+import RaceService from "../../../services/RaceService";
 import Swal from "sweetalert2";
 
-const PowerDeleteForm = () => {
-  const powerService = new PowerService();
+const RaceDeleteForm = () => {
+  const raceService = new RaceService();
   const initialValues = {
     id: "",
   };
 
   const handleSubmit = async (values, actions) => {
-    const response = await powerService
-      .deletePowerById(values.id)
+    const response = await raceService
+      .deleteRaceById(values.id)
       .then(() => {
         new Swal({
           title: "",
@@ -36,12 +36,12 @@ const PowerDeleteForm = () => {
         {({ isSubmitting }) => (
           <Form>
             <div>
-              <label htmlFor="ID">ID do Poder</label>
+              <label htmlFor="ID">ID da Raça</label>
               <Field type="number" name="id" />
             </div>
             <div>
               <button type="submit" disabled={isSubmitting}>
-                Remover Poder
+                Remover Raça
               </button>
             </div>
           </Form>
@@ -51,4 +51,4 @@ const PowerDeleteForm = () => {
   );
 };
 
-export default PowerDeleteForm;
+export default RaceDeleteForm;

@@ -14,7 +14,7 @@ import com.example.demo.repository.HairColorRepository;
 public class HairColorService {
 
 
-	@Autowired HairColorRepository hairColorRepository;
+	@Autowired(required = false) HairColorRepository hairColorRepository;
 	
 	public HairColor findById(Integer id) {
 		return hairColorRepository.findById(id).get();

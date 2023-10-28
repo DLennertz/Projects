@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,6 +25,8 @@ public class Item {
 	private Integer id;
 	
 	@Column(name = "name", unique = true)
+	@NotNull
+	@NotBlank
 	private String name;
 	
 	@ManyToMany

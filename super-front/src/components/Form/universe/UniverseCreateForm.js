@@ -1,47 +1,57 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field } from "formik";
 import UniverseService from "../../../services/UniverseService";
 import Swal from "sweetalert2";
 
 const UniverseCreateForm = () => {
-  var formData = new FormData();
   const universeService = new UniverseService();
 
-  const formik = useFormik({
-    initialValues: {
-      name: ""
-    },
-    onSubmit: (values) => {
-      const universe = {
-        name: values.name
-      };
-      const jsonData = JSON.stringify(universe);
-      const newUniverse = new Blob([jsonData], {
-        type: "application/json"
-      });
+  const initialValues = {
+    name: "",
+  };
 
-      formData.append("universe", newUniverse);
-      universeService
-        .createUniverse(formData)
+  const handleSubmit = async (values, actions) => {
+    try {
+      const response = await universeService
+        .createUniverse(values)
         .then(() => {
-          new Swal("", "Cadastro feito com sucesso", "success");
+          new Swal({
+            title: "",
+            text: "Cadastro feito com sucesso",
+            icon: "success",
+            buttons: ["NO", "YES"],
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              window.location.reload();
+            } else {
+            }
+          });
         })
         .catch((error) => new Swal("", error, "error"));
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação POST:", error);
     }
-  });
+    actions.setSubmitting(false);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">Universe Create</label>
-      <input
-        id="name"
-        name="name"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-      />
-
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <label htmlFor="Name">Tipo de universo</label>
+              <Field type="text" name="name" />
+            </div>
+            <div>
+              <button type="submit" disabled={isSubmitting}>
+                Criar Universo
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

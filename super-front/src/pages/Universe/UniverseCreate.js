@@ -1,6 +1,6 @@
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
 import SubMenuUniverse from "../../components/Menu/SubMenu/SubMenuUniverse/SubMenuUniverse";
-import UniverseCreateForm from "../../components/Form/universe/UniverseCreateForm";
+import UniverseCreateForm from "../../components/Form/Universe/UniverseCreateForm";
 
 function UniverseCreate() {
   return (

@@ -9,7 +9,7 @@ import com.example.demo.repository.KidRepository;
 @Service
 public class KidService {
 
-	@Autowired KidRepository kidRepository;
+	@Autowired(required = false) KidRepository kidRepository;
 	
 	public Kid findById(Integer id) {
 		return kidRepository.findById(id).get();

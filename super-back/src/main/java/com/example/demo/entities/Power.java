@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "power")
@@ -17,6 +20,8 @@ public class Power {
 	private Integer id;
 	
 	@Column(name = "name", unique = true)
+	@NotNull
+	@NotBlank
 	private String name;
 	
 	@ManyToMany(mappedBy="power")

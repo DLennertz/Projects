@@ -1,58 +1,62 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field } from "formik";
 import PowerService from "../../../services/PowerService";
 import Swal from "sweetalert2";
 
 const PowerUpdateForm = () => {
-  var formData = new FormData();
   const powerService = new PowerService();
+  const initialValues = {
+    id: "",
+    name: "",
+  };
 
-  const formik = useFormik({
-    initialValues: {
-      id: "",
-      name: ""
-    },
-    onSubmit: (values) => {
-      const power = {
-        id: values.id,
-        name: values.name
-      };
-      const jsonData = JSON.stringify(power);
-      const newpower = new Blob([jsonData], {
-        type: "application/json"
-      });
-
-      formData.append("power", newpower);
-      powerService
-        .updatePower(formData)
+  const handleSubmit = async (values, actions) => {
+    try {
+      const response = await powerService
+        .updatePower(values)
         .then(() => {
-          new Swal("", "Update feito com sucesso", "success");
+          new Swal({
+            title: "",
+            text: "Update feito com sucesso",
+            icon: "success",
+            buttons: ["NO", "YES"],
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              window.location.reload();
+            } else {
+            }
+          });
         })
         .catch((error) => new Swal("", error, "error"));
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação PUT:", error);
     }
-  });
+    actions.setSubmitting(false);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">Power Update</label>
-      <input
-        id="id"
-        name="id"
-        type="number"
-        onChange={formik.handleChange}
-        value={formik.values.id}
-        placeholder="ID"
-      />
-      <input
-        id="name"
-        name="name"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-        placeholder="Name"
-      />
+    <div>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <label htmlFor="Id">Id do Poder</label>
+              <Field type="number" name="id" />
+            </div>
 
-      <button type="submit">Submit</button>
-    </form>
+            <div>
+              <label htmlFor="Name">Nome do Poder</label>
+              <Field type="text" name="name" />
+            </div>
+            <div>
+              <button type="submit" disabled={isSubmitting}>
+                Atualizar Poder
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

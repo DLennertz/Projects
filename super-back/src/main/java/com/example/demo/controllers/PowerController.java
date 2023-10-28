@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Power;
@@ -36,12 +36,12 @@ public class PowerController {
 	}
 	
 	@PostMapping("") 
-	public ResponseEntity<Power> createPower(@RequestPart(name="power") Power power){
+	public ResponseEntity<Power> createPower(@RequestBody Power power){
 		return new ResponseEntity<Power>(powerService.createPower(power), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("") 
-	public ResponseEntity<Power> updatePower(@RequestPart(name="power") Power power){
+	public ResponseEntity<Power> updatePower(@RequestBody Power power){
 		return new ResponseEntity<Power>(powerService.updatePower(power), HttpStatus.CREATED);
 	}
 	

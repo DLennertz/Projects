@@ -1,6 +1,6 @@
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
 import SubMenuPersonagem from "../../components/Menu/SubMenu/SubMenuPersonagem/SubMenuPersonagem";
-import PersonagemDeleteForm from "../../components/Form/personagem/PersonagemDeleteForm";
+import PersonagemDeleteForm from "../../components/Form/Personagem/PersonagemDeleteForm";
 
 function PersonagemDelete() {
   return (

@@ -16,7 +16,9 @@ public interface ModelRepository extends JpaRepository<Model,Integer>{
 	@Query("SELECT COUNT(*) FROM model m where m.modelPosition.positionId = ?1")
 	Integer countByModelPosition(Integer id);
 
-	List<Model> findAllByOrderByModelRatingDesc(Pageable page);
+	List<Model> findAllByOrderByModelRatingDescModelIdAsc(Pageable page);
 
 	List<Model> findAllByOrderByModelIdDesc(Pageable page);
+	
+	List<Model> findAllByOrderByModelIdAsc(Pageable page);
 }

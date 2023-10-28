@@ -36,6 +36,7 @@ import UniverseDelete from "./pages/Universe/UniverseDelete";
 import Race from "./pages/Race/Race";
 import RaceCreate from "./pages/Race/RaceCreate";
 import RaceUpdate from "./pages/Race/RaceUpdate";
+import RaceDelete from "./pages/Race/RaceDelete";
 import RaceList from "./pages/Race/RaceList";
 import PersonagemProfile from "./pages/Personagem/PesonagemProfile";
 import PersonagemAddPhotoBatch from "./pages/Personagem/PersonagemAddPhotoBatch";
@@ -83,6 +84,7 @@ function App() {
         <Route path="/race/create" element={<RaceCreate />} />
         <Route path="/race/update" element={<RaceUpdate />} />
         <Route path="/race/list" element={<RaceList />} />
+        <Route path="/race/delete" element={<RaceDelete />} />
       </Routes>
     </Router>
   );

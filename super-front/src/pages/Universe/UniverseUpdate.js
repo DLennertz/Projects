@@ -1,6 +1,6 @@
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
 import SubMenuUniverse from "../../components/Menu/SubMenu/SubMenuUniverse/SubMenuUniverse";
-import UniverseUpdateForm from "../../components/Form/universe/UniverseUpdateForm";
+import UniverseUpdateForm from "../../components/Form/Universe/UniverseUpdateForm";
 function UniverseCreate() {
   return (
     <div className="app">

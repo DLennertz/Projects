@@ -1,57 +1,63 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field } from "formik";
 import EyeService from "../../../services/EyeService.js";
 import Swal from "sweetalert2";
 
 const EyeUpdateForm = () => {
-  var formData = new FormData();
   const eyeService = new EyeService();
 
-  const formik = useFormik({
-    initialValues: {
-      name: ""
-    },
-    onSubmit: (values) => {
-      const eye = {
-        id: values.id,
-        name: values.name
-      };
-      const jsonData = JSON.stringify(eye);
-      const newEye = new Blob([jsonData], {
-        type: "application/json"
-      });
+  const initialValues = {
+    id: "",
+    name: "",
+  };
 
-      formData.append("eyeColor", newEye);
-      eyeService
-        .updateEye(formData)
+  const handleSubmit = async (values, actions) => {
+    try {
+      const response = await eyeService
+        .updateEye(values)
         .then(() => {
-          new Swal("", "Update feito com sucesso", "success");
+          new Swal({
+            title: "",
+            text: "Update feito com sucesso",
+            icon: "success",
+            buttons: ["NO", "YES"],
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              window.location.reload();
+            } else {
+            }
+          });
         })
         .catch((error) => new Swal("", error, "error"));
+      console.log(response.data);
+    } catch (error) {
+      console.error("Erro ao fazer a solicitação PUT:", error);
     }
-  });
+    actions.setSubmitting(false);
+  };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="name">Eye Color Update</label>
-      <input
-        id="id"
-        name="id"
-        type="number"
-        onChange={formik.handleChange}
-        value={formik.values.id}
-        placeholder="ID"
-      />
-      <input
-        id="name"
-        name="name"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.name}
-        placeholder="Name"
-      />
+    <div>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <label htmlFor="Id">Id do Olho</label>
+              <Field type="number" name="id" />
+            </div>
 
-      <button type="submit">Submit</button>
-    </form>
+            <div>
+              <label htmlFor="Name">Nome do Olho</label>
+              <Field type="text" name="name" />
+            </div>
+            <div>
+              <button type="submit" disabled={isSubmitting}>
+                Atualizar Olho
+              </button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 

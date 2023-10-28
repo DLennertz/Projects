@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.EyeColor;
@@ -36,12 +36,12 @@ public class EyeColorController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<EyeColor> createEyeColor(@RequestPart(name="eyeColor")EyeColor eyeColor){
+	public ResponseEntity<EyeColor> createEyeColor(@RequestBody EyeColor eyeColor){
 		return new ResponseEntity<EyeColor>(eyeColorService.createEyeColor(eyeColor), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<EyeColor> updateEyeColor(@RequestPart(name="eyeColor") EyeColor eyeColor){
+	public ResponseEntity<EyeColor> updateEyeColor(@RequestBody EyeColor eyeColor){
 		return new ResponseEntity<EyeColor>(eyeColorService.updateEyeColor(eyeColor), HttpStatus.CREATED);
 	}
 	

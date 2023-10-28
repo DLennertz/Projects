@@ -15,9 +15,9 @@ export default class RaceService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
@@ -28,21 +28,21 @@ export default class RaceService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
 
-  deleteById(id) {
+  deleteRaceById(id) {
     return api
       .delete("race/" + id, {
         headers: {
           headers: {
-            Accept: "application/json"
-          }
-        }
+            Accept: "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }

@@ -13,7 +13,7 @@ import com.example.demo.repository.EyeColorRepository;
 @Service
 public class EyeColorService {
 	
-@Autowired EyeColorRepository eyeColorRepository;
+	@Autowired(required = false) EyeColorRepository eyeColorRepository;
 	
 	public EyeColorVO findById(Integer id) {
 		EyeColorVO eyeColorVO = this.convertEyeColorToEyeColorVO(eyeColorRepository.findById(id).get());

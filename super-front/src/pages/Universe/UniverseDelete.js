@@ -1,6 +1,6 @@
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
 import SubMenuUniverse from "../../components/Menu/SubMenu/SubMenuUniverse/SubMenuUniverse";
-import UniverseDeleteForm from "../../components/Form/universe/UniverseDeleteForm";
+import UniverseDeleteForm from "../../components/Form/Universe/UniverseDeleteForm";
 
 function UniverseDelete() {
   return (

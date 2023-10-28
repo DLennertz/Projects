@@ -51,9 +51,17 @@ const AddPhotoBatch = () => {
       photoService
         .addPhotoBatch(formData, id)
         .then(() => {
-          new Swal("", "Cadastro feito com sucesso", "success").then(
-            window.location.reload()
-          );
+          new Swal({
+            title: "",
+            text: "Registro feito com sucesso",
+            icon: "success",
+            buttons: ["NO", "YES"],
+          }).then(function (isConfirm) {
+            if (isConfirm) {
+              window.location.reload();
+            } else {
+            }
+          });
         })
         .catch((error) => new Swal("", error, "error"));
     },

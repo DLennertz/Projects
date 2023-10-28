@@ -15,9 +15,9 @@ export default class HairService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
@@ -28,9 +28,9 @@ export default class HairService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
@@ -40,9 +40,9 @@ export default class HairService {
       .delete("hair/" + id, {
         headers: {
           headers: {
-            Accept: "application/json"
-          }
-        }
+            Accept: "application/json",
+          },
+        },
       })
       .then((res) => res.true);
   }

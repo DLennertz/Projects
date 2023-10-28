@@ -1,6 +1,6 @@
 import SubMenuPersonagem from "../../components/Menu/SubMenu/SubMenuPersonagem/SubMenuPersonagem";
 import MainHeader from "../../components/Header/MainHeader/MainHeader";
-import AddPhotoBatch from "../../components/Form/personagem/AddPhotobatch";
+import AddPhotoBatch from "../../components/Form/Personagem/AddPhotobatch";
 
 function PersonagemAddPhotoBatch() {
   return (

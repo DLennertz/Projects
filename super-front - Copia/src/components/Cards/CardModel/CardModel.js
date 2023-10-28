@@ -3,6 +3,8 @@ import "./CardModel.css";
 import { Link } from "react-router-dom";
 
 const CardModel = (props) => {
+  console.log(props);
+
   return (
     <div className="card">
       <div className="card__body">
@@ -11,11 +13,19 @@ const CardModel = (props) => {
           {props.props.id} {props.props.country}
         </h3>
 
-        <img
-          className="cardFoto"
-          alt="Foto da modelo"
-          src={`${props.props.photos[0].url}`}
-        />
+        {props.props.photos.length === 0 ? (
+          <img
+            src="https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-6.png"
+            alt="Template Image"
+          />
+        ) : (
+          <img
+            className="cardFoto"
+            alt="Foto da modelo"
+            src={`${props.props.photos[0].url}`}
+          />
+        )}
+
         <div className="cardInfo">
           <div className="cardInfoBox">
             <p>Height {props.props.height}</p>

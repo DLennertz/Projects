@@ -22,12 +22,12 @@ import com.example.demo.repository.PositionRepository;
 @Service
 public class ModelService {
 
-	@Autowired ModelRepository modelRepository;
-	@Autowired CountryRepository countryRepository;
-	@Autowired EyeColorRepository eyeColorRepository;
-	@Autowired HairColorRepository hairColorRepository;
-	@Autowired PositionRepository positionRepository;
-	@Autowired PhotoService photoService;
+	@Autowired(required = false) ModelRepository modelRepository;
+	@Autowired(required = false) CountryRepository countryRepository;
+	@Autowired(required = false) EyeColorRepository eyeColorRepository;
+	@Autowired(required = false) HairColorRepository hairColorRepository;
+	@Autowired(required = false) PositionRepository positionRepository;
+	@Autowired(required = false) PhotoService photoService;
 	
 	public ModelVO findById(Integer id) {
 		ModelVO modelVO = this.convertModelToModelVO(modelRepository.findById(id).get());
@@ -66,12 +66,15 @@ public class ModelService {
 		List<ModelVO> listModelVO= new ArrayList<ModelVO>();
 		
 		switch(orderBy) {
-		case "Rating" : modelRepository.findAllByOrderByModelRatingDesc(page).stream().forEach((item) -> listModelVO.add(convertModelToModelVO(item)));
+		case "Rating" : modelRepository.findAllByOrderByModelRatingDescModelIdAsc(page).stream().forEach((item) -> listModelVO.add(convertModelToModelVO(item)));
+						return listModelVO;
+		case "LeastRecent" : modelRepository.findAllByOrderByModelIdAsc(page).stream().forEach((item) -> listModelVO.add(convertModelToModelVO(item)));
 						return listModelVO;
 		case "MostRecent" : modelRepository.findAllByOrderByModelIdDesc(page).stream().forEach((item) -> listModelVO.add(convertModelToModelVO(item)));
 						return listModelVO;
+		
 		default : modelRepository.findAll().stream().forEach((item) -> listModelVO.add(convertModelToModelVO(item)));
-		return listModelVO;
+						return listModelVO;
 			
 			
 		}
@@ -106,7 +109,6 @@ public class ModelService {
 		modelVO.setBoys(model.getModelBoys());
 		modelVO.setBust(model.getModelBust());
 		modelVO.setCountry(model.getModelCountry().getCountryName());
-		modelVO.setDataNascimento(model.getModelBirthday());
 		modelVO.setEyeColor(model.getModelEyeColor().getEyeColorName());	
 		model.getPhoto().stream().forEach((item) -> {
 			if(!item.isDeleted())
@@ -126,7 +128,6 @@ public class ModelService {
 	
 	private Model convertModelVOToModel(ModelVO modelVO) {
 		Model model = new Model();
-		model.setModelBirthday(modelVO.getDataNascimento());
 		model.setModelBoys(modelVO.getBoys());
 		model.setModelBust(modelVO.getBust());
 		model.setModelCountry((modelVO.getIdCountry() == null) ? countryRepository.findById(0).get() :countryRepository.findById(modelVO.getIdCountry()).get());

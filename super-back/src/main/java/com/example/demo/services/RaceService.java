@@ -72,4 +72,13 @@ public class RaceService {
 		mainRace = race;
 		return raceRepository.save(mainRace);
 	}
+
+	public Boolean deleteById(Integer id) {
+		try{raceRepository.deleteById(id);}
+		catch (Exception e) {
+			throw e;
+		
+		}
+		return true;
+	}
 }

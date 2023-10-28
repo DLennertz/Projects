@@ -15,9 +15,9 @@ export default class PowerService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
@@ -27,9 +27,9 @@ export default class PowerService {
         headers: {
           headers: {
             Accept: "application/json",
-            "Content-Type": "multipart/form-data"
-          }
-        }
+            "Content-Type": "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }
@@ -39,9 +39,9 @@ export default class PowerService {
       .delete("power/" + id, {
         headers: {
           headers: {
-            Accept: "application/json"
-          }
-        }
+            Accept: "application/json",
+          },
+        },
       })
       .then((res) => res.data);
   }

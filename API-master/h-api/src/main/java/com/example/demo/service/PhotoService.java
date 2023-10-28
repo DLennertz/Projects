@@ -11,8 +11,8 @@ import com.example.demo.repository.PhotoRepository;
 @Service
 public class PhotoService {
 
-	@Autowired PhotoRepository photoRepository;
-	@Autowired ModelRepository modelRepository;
+	@Autowired(required = false) PhotoRepository photoRepository;
+	@Autowired(required = false) ModelRepository modelRepository;
 	
 	public PhotoVO getPhotoById(int id) {
 		return this.convertPhotoToPhotoVO(photoRepository.findById(id).get());

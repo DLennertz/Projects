@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity(name="skin")
 public class Skin {
@@ -14,6 +16,8 @@ public class Skin {
 	private Integer id;
 	
 	@Column(name = "name", unique=true)
+	@NotNull
+	@NotBlank
 	private String name;
 
 	public Integer getId() {

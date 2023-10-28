@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.HairColor;
@@ -36,12 +36,12 @@ public class HairColorController {
 	}
 	
 	@PostMapping("")
-	public ResponseEntity<HairColor> createHairColor(@RequestPart(name="hairColor") HairColor hairColor){
+	public ResponseEntity<HairColor> createHairColor(@RequestBody HairColor hairColor){
 		return new ResponseEntity<HairColor>(hairColorService.createHairColor(hairColor), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<HairColor> update(@RequestPart(name="hairColor")HairColor hairColor){
+	public ResponseEntity<HairColor> update(@RequestBody HairColor hairColor){
 		return new ResponseEntity<HairColor>(hairColorService.updateHairColor(hairColor), HttpStatus.CREATED);
 	}
 	

@@ -13,7 +13,7 @@ import com.example.demo.repository.CountryRepository;
 @Service
 public class CountryService {
 
-	@Autowired CountryRepository countryRepository;
+	@Autowired(required = false) CountryRepository countryRepository;
 	
 	public Country findById(Integer id) {
 		Country country = countryRepository.findById(id).get();

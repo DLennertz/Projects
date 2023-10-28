@@ -74,6 +74,7 @@ const Modelo = () => {
             <option value={"Nada"}>------</option>
             <option value={"Rating"}>Rating</option>
             <option value={"MostRecent"}>Most Recent</option>
+            <option value={"LeastRecent"}>Least Recent</option>
           </select>
           <Pagination
             qtdRegistros={qtdRegistros}
