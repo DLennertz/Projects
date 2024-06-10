@@ -40,6 +40,7 @@ import RaceDelete from "./pages/Race/RaceDelete";
 import RaceList from "./pages/Race/RaceList";
 import PersonagemProfile from "./pages/Personagem/PesonagemProfile";
 import PersonagemAddPhotoBatch from "./pages/Personagem/PersonagemAddPhotoBatch";
+import PersonagemUpdate from "./pages/Personagem/PersonagemUpdate";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/personagem/create" element={<PersonagemCreate />} />
         <Route path="/personagem/list" element={<PersonagemList />} />
         <Route path="/personagem/delete" element={<PersonagemDelete />} />
+        <Route path="/personagem/update" element={<PersonagemUpdate />} />
         <Route
           path="/personagem/addPhotosbatch"
           element={<PersonagemAddPhotoBatch />}
